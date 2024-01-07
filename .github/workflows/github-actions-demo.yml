@@ -1,0 +1,14 @@
+name: "Newman Tests"
+on:[push,pull_request]
+
+jobs:
+  build:
+    runs-on:windows
+    container:
+      image:postman/newman
+    steps:
+    - name: Checkout
+    uses: actions/checkout@v2
+
+    - name : Run API Tests
+    run: newman run RestfulBookerAPIs.postman_collection.json -e RestfulBookerENV.postman_environment.json 
